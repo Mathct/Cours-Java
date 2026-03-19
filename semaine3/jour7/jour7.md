@@ -1,24 +1,45 @@
 ## Jour 7 – Mini-projet semaine 3 (persisté)
 
-Objectif : finaliser une API avec vraie persistance.
+Objectif du jour : assembler toutes les briques de persistance dans une version stable de ton API.
 
-## Checklist
+---
 
-- `Task` entité JPA persistée
-- `TaskRepository` + filtres simples
-- CRUD complet branché DB
-- Relation `Task` -> `User` (au moins basique)
-- Flyway activé
+## 1. Fonctionnalités à avoir
 
-## Scénario de test
+- CRUD `Task` complet en base.
+- `Task` liée à `User`.
+- Requêtes filtrées (`done`, `keyword`).
+- Pagination/tri.
+- Migrations Flyway actives.
 
-1. Créer un user
-2. Créer des tasks liées au user
-3. Lister tasks par user
-4. Mettre à jour `done=true`
-5. Supprimer une task
+---
 
-## Résultat attendu
+## 2. Scénario de test complet
 
-Tu n’utilises plus de stockage en mémoire : toute donnée est en DB.
+1. Créer un user.
+2. Créer 3 tâches liées à ce user.
+3. Vérifier `GET /tasks?ownerId={id}`.
+4. Filtrer `GET /tasks?done=false`.
+5. Mettre à jour une tâche (`done=true`).
+6. Supprimer une tâche.
+7. Redémarrer l’application et vérifier que les données restantes sont toujours présentes.
+
+---
+
+## 3. Points de qualité à vérifier
+
+- IDs en `Long`.
+- Réponses 404 si ressource absente.
+- Pas de logique SQL dans les contrôleurs.
+- Pas de retour brut d’entité relationnelle si ça crée des boucles JSON.
+
+---
+
+## 4. Validation de fin de semaine 3
+
+Tu as terminé la semaine 3 si :
+
+- ton API lit/écrit uniquement via JPA et PostgreSQL,
+- les migrations DB sont en place,
+- tu es prêt à renforcer la qualité d’API (DTO/validation/tests) en semaine 4.
 

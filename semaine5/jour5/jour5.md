@@ -1,15 +1,51 @@
 ## Jour 5 – Rôles et autorisations simples
 
-Objectif : distinguer user/admin.
+Objectif du jour : différencier les capacités d’un utilisateur standard et d’un administrateur.
 
-## À faire
+---
 
-- Ajouter rôle dans `User` (`ROLE_USER`, `ROLE_ADMIN`)
-- Restreindre endpoints admin :
-  - ex: suppression globale
-- Utiliser `hasRole("ADMIN")` dans config sécurité
+## 1. Modèle de rôles
 
-## Validation
+Dans `User`, stocker :
 
-- User standard ne peut pas accéder aux routes admin.
+- `ROLE_USER`
+- `ROLE_ADMIN`
+
+Mapper ces rôles vers `GrantedAuthority`.
+
+---
+
+## 2. Restreindre les endpoints
+
+Exemples :
+
+- `/admin/**` -> `hasRole("ADMIN")`
+- `/tasks/**` -> `hasAnyRole("USER", "ADMIN")`
+
+Tu peux le faire en config sécurité ou via `@PreAuthorize`.
+
+---
+
+## 3. Cas métier typiques
+
+- USER : gère ses propres tâches.
+- ADMIN : peut lister/supprimer globalement.
+
+---
+
+## 4. Exercices du jour
+
+1. Ajouter rôles dans l’entité user.
+2. Créer un endpoint admin test.
+3. Vérifier qu’un USER obtient 403.
+4. Vérifier qu’un ADMIN passe.
+
+---
+
+## 5. Validation du jour
+
+Tu as fini si :
+
+- les permissions changent selon le rôle,
+- les routes sensibles sont réellement restreintes.
 

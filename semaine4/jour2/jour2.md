@@ -1,30 +1,63 @@
 ## Jour 2 – Validation avancée
 
-Objectif : renforcer les contrôles d’entrée.
+Objectif du jour : empêcher les données invalides d’entrer dans ton système dès la couche API.
 
-## Exemples
+---
+
+## 1. Valider les DTO
+
+Exemple `CreateTaskRequest` :
 
 ```java
-@NotBlank
-@Size(min = 3, max = 100)
+@NotBlank(message = "Le titre est obligatoire")
+@Size(min = 3, max = 100, message = "Le titre doit faire entre 3 et 100 caractères")
 private String title;
 
-@Size(max = 500)
+@Size(max = 500, message = "La description est trop longue")
 private String description;
+
+@NotNull(message = "ownerId est obligatoire")
+private Long ownerId;
 ```
 
-Sur endpoints :
+---
+
+## 2. Activer dans les endpoints
 
 ```java
 public ResponseEntity<TaskResponse> create(@Valid @RequestBody CreateTaskRequest req)
 ```
 
-## Plus loin
+Même principe pour update.
 
-- Validation personnalisée (ex: titre interdit)
-- Groupes de validation (optionnel)
+---
 
-## Validation
+## 3. Valider les paramètres d’URL
 
-- Requêtes invalides -> 400 systématique.
+Dans le contrôleur :
+
+```java
+@GetMapping("/{id}")
+public TaskResponse getOne(@PathVariable @Positive Long id) { ... }
+```
+
+Ajouter `@Validated` sur la classe contrôleur pour activer la validation des params.
+
+---
+
+## 4. Exercices du jour
+
+1. Ajouter contraintes de validation sur tous les DTO.
+2. Mettre des messages personnalisés.
+3. Ajouter validation des path/query params.
+4. Tester des payloads invalides.
+
+---
+
+## 5. Validation du jour
+
+Tu as fini si :
+
+- les requêtes invalides renvoient 400 de façon systématique,
+- les messages d’erreur sont compréhensibles pour le client API.
 

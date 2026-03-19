@@ -1,14 +1,37 @@
 ## Semaine 4 – API propre : DTO, validation, erreurs, tests
 
-Objectif global : rendre ton API robuste et maintenable (contrats clairs, gestion d’erreurs, tests unitaires et intégration).
+Objectif global : professionnaliser ton backend avec une API claire, validée, testée et facile à maintenir.
 
-## Plan de la semaine
+---
 
-- Jour 1 : DTO request/response + mapping
-- Jour 2 : Validation avancée
-- Jour 3 : Gestion d’erreurs globale
-- Jour 4 : Structure service propre + exceptions métier
-- Jour 5 : Tests unitaires (JUnit + Mockito)
-- Jour 6 : Tests intégration (MockMvc / @SpringBootTest)
-- Jour 7 : Mini-projet “API clean”
+## Compétences visées
+
+- Construire des DTO request/response propres.
+- Mettre en place une validation cohérente.
+- Uniformiser les erreurs HTTP/JSON.
+- Séparer nettement controller / service / repository.
+- Écrire des tests unitaires et des tests d’intégration.
+
+---
+
+## Plan détaillé
+
+- **Jour 1** : DTO + mapping.
+- **Jour 2** : validation Bean Validation avancée.
+- **Jour 3** : gestion d’erreurs globale (`@ControllerAdvice`).
+- **Jour 4** : exceptions métier et services propres.
+- **Jour 5** : tests unitaires JUnit + Mockito.
+- **Jour 6** : tests d’intégration API (`MockMvc`).
+- **Jour 7** : mini-projet API “clean” consolidé.
+
+---
+
+## Livrable de fin de semaine
+
+Une API persistée qui :
+
+- n’expose pas directement ses entités JPA,
+- valide toutes les entrées,
+- renvoie des erreurs standardisées,
+- possède une base de tests automatisés.
 
