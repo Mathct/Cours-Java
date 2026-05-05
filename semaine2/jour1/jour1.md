@@ -79,8 +79,9 @@ Dans ton IDE (ou via Maven), lance l’application :
 - Avec l’IDE : bouton `Run` sur la classe `TasksApiApplication`.
 - Avec Maven dans un terminal à la racine du projet :
 
+
 ```bash
-mvn spring-boot:run
+mvnw.cmd spring-boot:run
 ```
 
 Vérifie dans la console que l’application démarre sans erreur.
